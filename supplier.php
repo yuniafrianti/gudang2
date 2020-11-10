@@ -5,9 +5,15 @@ if(isset($_POST["simpan"])){
     $sql="insert into tbl_supplier values('".$_POST['kd_supplier']."','".$_POST['nama_supplier']."')";
     $query=mysqli_query($kon,$sql);
     if($query){
-      echo "data berhasil disimpan";
+          echo ("<script LANGUAGE='JavaScript'>
+           window.alert('Succesfully Saved');
+            window.location.href='index.php?id=11.php';
+            </script>");
     }else{
-      echo "data gagal tersimpan";
+      echo ("<script LANGUAGE='JavaScript'>
+           window.alert('Failed');
+            window.location.href='index.php?id=11.php';
+            </script>");
     }
   }
 ?>

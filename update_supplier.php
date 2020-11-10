@@ -8,12 +8,15 @@
       var_dump($a);
       $query=mysqli_query($kon,$a);
         if($query) {
-          echo ("<script LANGUAGE='JavaScript'>
+     echo ("<script LANGUAGE='JavaScript'>
            window.alert('Succesfully Updated');
             window.location.href='index.php?id=11.php';
             </script>");
-        }else{
-          echo "data gagal tersimpan";
+    }else{
+      echo ("<script LANGUAGE='JavaScript'>
+           window.alert('Failed');
+            window.location.href='index.php?id=11.php';
+            </script>");
 
         }
         }

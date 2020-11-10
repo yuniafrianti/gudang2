@@ -12,12 +12,15 @@
       var_dump($a);
       $query=mysqli_query($kon,$a);
         if($query) {
-          echo ("<script LANGUAGE='JavaScript'>
+             echo ("<script LANGUAGE='JavaScript'>
            window.alert('Succesfully Updated');
             window.location.href='index.php?id=4.php';
             </script>");
-        }else{
-          echo "data gagal tersimpan";
+    }else{
+      echo ("<script LANGUAGE='JavaScript'>
+           window.alert('Failed');
+            window.location.href='index.php?id=4.php';
+            </script>");
 
         }
         }
@@ -30,7 +33,7 @@ include("koneksi.php");
 
   $id = $_GET['kd_brgkeluar'];
   // var_dump($id);
-  $data = mysqli_query($kon,"select * from tbl_barangkeluar where kd_brgkeluar='$id'");
+  $data = mysqli_query($kon,"select * from tbl_barangkeluar inner join tbl_barangmasuk on tbl_barangkeluar.kd_masuk = tbl_barangmasuk.kd_masuk inner join tbl_barang on tbl_barangmasuk.kd_barang = tbl_barang.kd_barang where kd_brgkeluar='$id'");
   while($d = mysqli_fetch_array($data)){  
 
 ?>
@@ -54,59 +57,37 @@ include("koneksi.php");
                   </div>
                   
                    
-                     <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label"> Isuued By</label>
+                    <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Isuued By</label>
                     <div class="col-sm-10">
-                   <select class="form-control" name="issued"> 
-                    <option value='<?php echo $d['issued']; ?>'><?php echo $d['issued']; ?></option>
-                   <?php include('koneksi.php'); 
-                   $a="select * from tbl_pegawai";
-                   $b=mysqli_query($kon,$a);
-                   while ($data=mysqli_fetch_object($b)) {
-                    ?>
-
-                      <option value="<?php echo $data->nama_pegawai;?>"> <?php echo $data->nama_pegawai; ?> </option>
-                   <?php
-                   }
-                  ?>
-                     
-                   </select>
+                      <input type="text" class="form-control" name="issued" value="<?php echo $d['issued']; ?>">
                     </div>
                   </div>
 
-                    <div class="form-group row">
+
+                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Received By</label>
                     <div class="col-sm-10">
-                   <select class="form-control" name="received"> 
-                    <option value='<?php echo $d['received']; ?>'><?php echo $d['received']; ?></option>
-                    <?php include('koneksi.php'); 
-                   $a="select * from tbl_pegawai";
-                   $b=mysqli_query($kon,$a);
-                   while ($data=mysqli_fetch_object($b)) {
-                    ?>
-
-                      <option value="<?php echo $data->nama_pegawai;?>"> <?php echo $data->nama_pegawai; ?> </option>
-                   <?php
-                   }
-                  ?>
-                     
-                   </select>
+                      <input type="text" class="form-control" name="received" value="<?php echo $d['received']; ?>">
                     </div>
                   </div>
+
+                
+
 
 
                      <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label"> Nama Barang </label>
                     <div class="col-sm-10">
                    <select class="form-control" name="kd_masuk"> 
-                     <option value='<?php echo $d['kd_masuk']; ?>'> </option>
+                     <option value='<?php echo $d['kd_masuk']; ?>'> <?php echo $d['nama_barang']; ?></option>
                     <?php include('koneksi.php'); 
                    $a="select tbl_barangmasuk.kd_barang, tbl_barangmasuk.kd_masuk , tbl_barang.nama_barang, tbl_barangmasuk.stok as stokk from tbl_barangmasuk inner join tbl_barang on tbl_barang.kd_barang = tbl_barangmasuk.kd_barang group by kd_barang";
                    $b=mysqli_query($kon,$a);
                    while ($data=mysqli_fetch_object($b)) {
                     ?>
 
-                      <option value="<?php echo $data->kd_masuk;?>"> <?php echo $data->nama_barang; ?> </option>
+                      <option value="<?php echo $data->kd_masuk;?>"> <?php echo $data->nama_barang; ?></option>
                    <?php
                    }
                   ?>

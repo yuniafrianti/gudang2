@@ -13,7 +13,10 @@
             window.location.href='index.php?id=1.php';
             </script>");
         }else{
-          echo "data gagal tersimpan";
+        echo ("<script LANGUAGE='JavaScript'>
+           window.alert('Failed');
+            window.location.href='index.php?id=1.php';
+            </script>");
 
         }
         }  

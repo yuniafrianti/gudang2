@@ -5,9 +5,15 @@ if(isset($_POST["simpan"])){
     $sql="insert into tbl_barang values('".$_POST['kd_barang']."','".$_POST['nama_barang']."')";
     $query=mysqli_query($kon,$sql);
     if($query){
-      echo "data berhasil disimpan";
+      echo ("<script LANGUAGE='JavaScript'>
+           window.alert('Succesfully Saved');
+            window.location.href='index.php?id=1.php';
+            </script>");
     }else{
-      echo "data gagal tersimpan";
+      echo ("<script LANGUAGE='JavaScript'>
+           window.alert('Failed');
+            window.location.href='index.php?id=1.php';
+            </script>");
     }
   }
 ?>
@@ -35,7 +41,7 @@ if(isset($_POST["simpan"])){
 
                 <!-- /.card-body -->
                  <div class="box-footer" align="float-right">
-                  <button type="submit" name="simpan" class="btn btn-info pull-right" onclick="alert('Data Berhasil Disimpan')">Save</button>
+                  <button type="submit" name="simpan" class="btn btn-info pull-right">Save</button>
                   <button type="submit" class="btn btn-default float-right">Cancel</button>
                   <br>
                 </div>

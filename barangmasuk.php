@@ -6,10 +6,15 @@ include("koneksi.php");
     $sql="insert into tbl_barangmasuk values('".$_POST['kd_masuk']."','".$_POST['kd_barang']."','".$_POST['brand']."','".$_POST['kd_supplier']."','".$_POST['kd_kategori']."','".$_POST['stok']."','".$_POST['harga']."','".$_POST['tgl']."')";
     $query=mysqli_query($kon,$sql);
     if($query){
-      echo "data berhasil disimpan";
-      // die_dump($sql);
+          echo ("<script LANGUAGE='JavaScript'>
+           window.alert('Succesfully Saved');
+            window.location.href='index.php?id=3.php';
+            </script>");
     }else{
-      echo "data gagal tersimpan";
+      echo ("<script LANGUAGE='JavaScript'>
+           window.alert('Failed');
+            window.location.href='index.php?id=3.php';
+            </script>");
     }
   }
 ?>
@@ -32,7 +37,7 @@ include("koneksi.php");
                     <label for="inputPassword3" class="col-sm-2 col-form-label"> Nama Barang </label>
                     <div class="col-sm-10">
                    <select class="form-control" name="kd_barang">
-                    <option value=''>----Pilih Nama Barang----</option>
+                    <option value=''>-Pilih Nama Barang-</option>
                     <?php include('koneksi.php'); 
                    $a="select * from tbl_barang";
                    $b=mysqli_query($kon,$a);
@@ -63,7 +68,7 @@ include("koneksi.php");
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Supplier </label>
                     <div class="col-sm-10">
                    <select class="form-control" name="kd_supplier">
-                    <option value=''>----Pilih Nama Supplier----</option>
+                    <option value=''>-Pilih Nama Supplier-</option>
                     <?php include('koneksi.php'); 
                    $a="select * from tbl_supplier";
                    $b=mysqli_query($kon,$a);
@@ -85,7 +90,7 @@ include("koneksi.php");
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Category</label>
                     <div class="col-sm-10">
                    <select class="form-control" name="kd_kategori">
-                    <option value=''>----Pilih Category----</option>
+                    <option value=''>-Pilih Category-</option>
                     <?php include('koneksi.php'); 
                    $a="select * from tbl_kategori";
                    $b=mysqli_query($kon,$a);
@@ -220,7 +225,7 @@ include("koneksi.php");
 
                     ?> </td>
                     <td><?php echo $row['tgl_report'];?></td>
-                    <td><a href="index.php?id=14?&kd_masuk=<?php echo $row['kd_masuk']; ?>">Update</a> | <a href="delete_barangmasuk.php?kd_masuk=<?php echo $row['kd_masuk']; ?>">Delete</a></td>
+                    <td><!-- <a href="index.php?id=14?&kd_masuk=<?php echo $row['kd_masuk']; ?>">Update</a> | --> <a href="delete_barangmasuk.php?kd_masuk=<?php echo $row['kd_masuk']; ?>">Delete</a></td>
                 </tr>
                   <?php 
                   }

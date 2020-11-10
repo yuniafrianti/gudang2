@@ -2,13 +2,20 @@
 include("koneksi.php");
 
 
+
 if(isset($_POST["simpan"])){
     $sql="insert into tbl_barangkeluar values('".$_POST['kd_brgkeluar']."','".$_POST['issued']."','".$_POST['received']."','".$_POST['kd_masuk']."','".$_POST['stok']."','".$_POST['tgl']."')";
     $query=mysqli_query($kon,$sql);
     if($query){
-      echo "data berhasil disimpan";
+          echo ("<script LANGUAGE='JavaScript'>
+           window.alert('Succesfully Saved');
+            window.location.href='index.php?id=4.php';
+            </script>");
     }else{
-      echo "data gagal tersimpan";
+      echo ("<script LANGUAGE='JavaScript'>
+           window.alert('Failed');
+            window.location.href='index.php?id=4.php';
+            </script>");
     }
   }
 ?>
@@ -28,7 +35,7 @@ if(isset($_POST["simpan"])){
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Issued By</label>
                     <div class="col-sm-10">
                      <select class="form-control" name="issued" > 
-                      <option value=''>----Pilih Nama Pekerja----</option>
+                      <option value=''>-Pilih Nama Pekerja-</option>
                       <?php include('koneksi.php'); 
                     $a="select * from tbl_pegawai";
                     $b=mysqli_query($kon,$a);
@@ -48,7 +55,7 @@ if(isset($_POST["simpan"])){
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Received By</label>
                     <div class="col-sm-10">
                      <select class="form-control" name="received" > 
-                      <option value=''>----Pilih Nama Pekerja----</option>
+                      <option value=''>-Pilih Nama Pekerja-</option>
                       <?php include('koneksi.php'); 
                     $a="select * from tbl_pegawai";
                     $b=mysqli_query($kon,$a);
@@ -71,7 +78,7 @@ if(isset($_POST["simpan"])){
                     <div class="col-sm-10">
 
                    <select class="form-control" name="kd_masuk"> 
-                    <option value=''>----Pilih Nama Barang----</option>
+                    <option value=''>-Pilih Nama Barang-</option>
                     <?php include('koneksi.php'); 
                    $a="select tbl_barangmasuk.kd_barang, tbl_barangmasuk.kd_masuk , tbl_barang.nama_barang, tbl_barangmasuk.stok as stokk from tbl_barangmasuk inner join tbl_barang on tbl_barang.kd_barang = tbl_barangmasuk.kd_barang group by kd_barang";
                    $b=mysqli_query($kon,$a);
@@ -181,7 +188,7 @@ if(isset($_POST["simpan"])){
                 <td><?php echo $row['nama_barang'];?></td>
                 <td><?php echo $row['stok'];?></td>
                 <td><?php echo $row['tgl'];?></td>
-                 <td><a href="index.php?id=5?&kd_brgkeluar=<?php echo $row['kd_brgkeluar']; ?>">Update</a> | <a href="delete_barangkeluar.php?kd_brgkeluar=<?php echo $row['kd_brgkeluar']; ?>">Delete</a></td>
+                 <td><!-- a href="index.php?id=5?&kd_brgkeluar=<?php echo $row['kd_brgkeluar']; ?>">Update</a> | --> <a href="delete_barangkeluar.php?kd_brgkeluar=<?php echo $row['kd_brgkeluar']; ?>">Delete</a></td>
           </tr>
             <?php
                   }

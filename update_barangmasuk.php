@@ -15,12 +15,15 @@
       var_dump($a);
       $query=mysqli_query($kon,$a);
         if($query) {
-          echo ("<script LANGUAGE='JavaScript'>
+           echo ("<script LANGUAGE='JavaScript'>
            window.alert('Succesfully Updated');
             window.location.href='index.php?id=3.php';
             </script>");
-        }else{
-          echo "data gagal tersimpan";
+    }else{
+      echo ("<script LANGUAGE='JavaScript'>
+           window.alert('Failed');
+            window.location.href='index.php?id=3.php';
+            </script>");
 
         }
         }
@@ -34,7 +37,7 @@ include("koneksi.php");
 
      $id = $_GET['kd_masuk'];
   // var_dump($id);
-  $data = mysqli_query($kon,"select * from tbl_barangmasuk where kd_masuk='$id'");
+  $data = mysqli_query($kon,"select * from tbl_barangmasuk inner join tbl_barang on tbl_barangmasuk.kd_barang = tbl_barang.kd_barang inner join tbl_supplier on tbl_barangmasuk.kd_supplier = tbl_supplier.kd_supplier inner join tbl_kategori on tbl_barangmasuk.kd_kategori = tbl_kategori.kd_kategori where kd_masuk='$id'");
   while($d = mysqli_fetch_array($data)){
 
 ?>
@@ -54,10 +57,7 @@ include("koneksi.php");
                   <div class="card-body">
                   <div class="form-group row">
                    <!--  <label for="inputEmail3" class="col-sm-2 col-form-label">Kode Pegawai</label> -->
-                    <label class="col-sm-2 col-form-label" 
-                   >
-                   <?php echo $d['kd_masuk']; ?>
-                      </label>
+
                     <div class="col-sm-10">
                       <input type="hidden" class="form-control" name="kd_masuk" value="<?php echo $d['kd_masuk']; ?>">
                     </div>
@@ -67,7 +67,7 @@ include("koneksi.php");
                     <label for="inputPassword3" class="col-sm-2 col-form-label"> Nama Barang </label>
                     <div class="col-sm-10">
                    <select class="form-control" name="kd_barang"> 
-                    <option value='<?php echo $d['kd_barang']; ?>'></option>
+                    <option value='<?php echo $d['kd_barang']; ?>'> <?php echo $d['nama_barang']; ?></option>
                     <?php include('koneksi.php'); 
                    $a="select * from tbl_barang";
                    $b=mysqli_query($kon,$a);
@@ -96,7 +96,7 @@ include("koneksi.php");
                     <label for="inputPassword3" class="col-sm-2 col-form-label"> Supplier </label>
                     <div class="col-sm-10">
                    <select class="form-control" name="kd_supplier">
-                    <option value='<?php echo $d['kd_supplier']; ?>'></option>
+                    <option value='<?php echo $d['kd_supplier']; ?>'><?php echo $d['nama_supplier']; ?></option>
                     <?php include('koneksi.php'); 
                    $a="select * from tbl_supplier";
                    $b=mysqli_query($kon,$a);
@@ -116,7 +116,7 @@ include("koneksi.php");
                     <label for="inputPassword3" class="col-sm-2 col-form-label"> Category </label>
                     <div class="col-sm-10">
                    <select class="form-control" name="kd_kategori">
-                    <option value='<?php echo $d['kd_kategori']; ?>'></option>
+                    <option value='<?php echo $d['kd_kategori']; ?>'><?php echo $d['nama_kategori']; ?></option>
                   <?php include('koneksi.php'); 
                    $a="select * from tbl_kategori";
                    $b=mysqli_query($kon,$a);

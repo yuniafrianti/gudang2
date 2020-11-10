@@ -12,8 +12,11 @@
            window.alert('Succesfully Updated');
             window.location.href='index.php?id=9.php';
             </script>");
-        }else{
-          echo "data gagal tersimpan";
+    }else{
+      echo ("<script LANGUAGE='JavaScript'>
+           window.alert('Failed');
+            window.location.href='index.php?id=9.php';
+            </script>");
 
         }
         }
